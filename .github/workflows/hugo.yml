@@ -31,5 +31,5 @@ jobs:
           hugo-version: '0.80.0'
           extended: true
         
-      - name: Check
-        run: hugo check
+      - name: Build
+        run: hugo
