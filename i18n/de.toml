@@ -1,0 +1,34 @@
+[CONTACT_ADDRESS]
+  other = "Adresse"
+[CONTACT_EMAIL]
+  other = "E-Mail"
+[CONTACT_FORM_FIELD_EMAIL]
+  other = "E-Mail-Adresse"
+[CONTACT_FORM_FIELD_MESSAGE]
+  other = "Nachricht"
+[CONTACT_FORM_FIELD_NAME]
+  other = "Name"
+[CONTACT_FORM_SUBMIT_SEND_MESSAGE]
+  other = "Nachricht senden"
+[CONTACT_PHONE]
+  other = "Telefonnummer"
+[CONTACT_SOCIAL]
+  other = "Soziales"
+[COPYRIGHT_MESSAGE_1]
+  other = "Design: [HTML5 UP](https://html5up.net)"
+[COPYRIGHT_MESSAGE_2]
+  other = "Hugo-Implementation: [Marvin Schopf](https://www.marvinschopf.com) & [curttimson](https://curtistimson.co.uk)"
+[INTRO_CONTINUE]
+  other = "Fortfahren"
+[NAV_MENU]
+  other = "Menü"
+[NAV_CONTACT]
+  other = "Kontakt"
+[PAGINATION_NEXT]
+  other = "Nächste"
+[PAGINATION_PREVIOUS]
+  other = "Vorherige"
+[PAGINATION_FIRST]
+  other = "Erste"
+[PAGINATION_LAST]
+  other = "Letzte"
