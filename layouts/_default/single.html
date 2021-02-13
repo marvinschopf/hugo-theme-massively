@@ -10,35 +10,7 @@
 				<!-- Main -->
 					<div id="main">
 
-						<!-- Post -->
-                        <section class="post">
-                            <header class="major">
-                                {{ if not .Date.IsZero }}
-                                <span class="date">{{ .Date.Format (.Site.Params.DateFormat | default "January 2, 2006") }}</span>
-                                {{ end }}
-                                <h1>{{ .Title }}</h1>
-                                <p>{{ .Description }}</p>
-                            </header>
-                            {{ if .Params.image }}
-                            <div class="image main">
-                            {{ if .Params.imageAlt }}
-                                <img src="{{ .Params.image | relURL }}" alt="{{ .Params.imageAlt }}" />
-                            {{ else }}
-                                <img src="{{ .Params.image | relURL }}" alt="" />
-                            {{ end }}
-                            {{ if .Params.imageAttribution }}
-                                <center><span style="text-align:center;font-style:italic;">{{ .Params.imageAttribution | safeHTML }}</span></center>
-                            {{ end }}
-                            </div>
-                            {{ end }}
-                            {{ .Content }}
-
-                            {{ partial "postcustom" . }}
-                            
-                            {{ if not (eq .Params.disableComments true) }}
-                            {{ template "_internal/disqus.html" . }}
-                            {{ end }}
-                        </section>
+                        {{ .Content }}
 
 					</div>
 
