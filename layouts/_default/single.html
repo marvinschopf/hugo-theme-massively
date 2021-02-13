@@ -27,7 +27,7 @@
                                 <img src="{{ .Params.image | relURL }}" alt="" />
                             {{ end }}
                             {{ if .Params.imageAttribution }}
-                                <center><span style="text-align:center;font-style:italic;">{{ .Params.imageAttribution }}</span></center>
+                                <center><span style="text-align:center;font-style:italic;">{{ htmlUnescape .Params.imageAttribution }}</span></center>
                             {{ end }}
                             </div>
                             {{ end }}
