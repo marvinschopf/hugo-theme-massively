@@ -21,7 +21,7 @@
                             </header>
                             {{ if .Params.image }}
                             <div class="image main">
-                            {{ if .Params.imageAlt }}y
+                            {{ if .Params.imageAlt }}
                                 <img src="{{ .Params.image | relURL }}" alt="{{ .Params.imageAlt }}" />
                             {{ else }}
                                 <img src="{{ .Params.image | relURL }}" alt="" />
