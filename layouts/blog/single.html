@@ -19,38 +19,38 @@
                                 <h1>{{ .Title }}</h1>
                                 <p>{{ .Description }}</p>
                             </header>
-                            {{ if .Params.image }}
-                            <div class="image main">
-                            {{ if .Params.imageModern }}
-                                <picture>
-                                    {{ if .Params.imageModernType }}
-                                        <source srcset="{{ .Params.imageModern | relURL }}" type="{{ .Params.imageModernType }}">
-                                    {{ else }}
-                                        <source srcset="{{ .Params.imageModern | relURL }}" type="image/webp">
-                                    {{ end }}
-                                    {{ if .Params.imageType }}
-                                        <source srcset="{{ .Params.image | relURL }}" type="{{ .Params.imageType }}">
-                                    {{ else }}
-                                        <source srcset="{{ .Params.image | relURL }}">
-                                    {{ end }}
-                                    {{ if .Params.imageAlt }}
-                                        <img src="{{ .Params.image | relURL }}" alt="{{ .Params.imageAlt }}">
-                                    {{ else }}
-                                    <img src="{{ .Params.image | relURL }}" alt="">
-                                    {{ end }}
-                                </picture>
-                            {{ else }}
-                            {{ if .Params.imageAlt }}
-                                <img src="{{ .Params.image | relURL }}" alt="{{ .Params.imageAlt }}" />
-                            {{ else }}
-                                <img src="{{ .Params.image | relURL }}" alt="" />
-                            {{ end }}
-                            {{ end }}
-                            {{ if .Params.imageAttribution }}
-                                <center><span style="text-align:center;font-style:italic;">{{ .Params.imageAttribution | safeHTML }}</span></center>
-                            {{ end }}
-                            </div>
-                            {{ end }}
+                            {{ if .Params.image }} <!-- IMAGE IF -->
+                                <div class="image main">
+                                {{ if .Params.imageModern }} <!-- IMAGE MODERN -->
+                                    <picture>
+                                        {{ if (isset .Params "imageModernType") }} <!-- IMAGE MODERN TYPE -->
+                                            <source srcset="{{ .Params.imageModern | relURL }}" type="{{ .Params.imageModernType }}">
+                                        {{else}}
+                                            <source srcset="{{ .Params.imageModern | relURL }}" type="image/webp">
+                                        {{ end }} <!-- END IMAGE MODERN TYPE -->
+                                        {{ if (isset .Params "imageType") }} <!-- IMAGE TYPE -->
+                                            <source srcset="{{ .Params.image | relURL }}" type="{{ .Params.imageType }}">
+                                        {{else}}
+                                            <source srcset="{{ .Params.image | relURL }}">
+                                        {{ end }} <!-- END IMAGE TYPE -->
+                                        {{ if (isset .Params "imageAlt") }} <!-- IMAGE ALT -->
+                                            <img src="{{ .Params.image | relURL }}" alt="{{ .Params.imageAlt }}">
+                                        {{else}}
+                                            <img src="{{ .Params.image | relURL }}" alt="">
+                                        {{ end }} <!-- END IMAGE ALT -->
+                                    </picture>
+                                {{ else }} <!-- ELSE IMAGE MODERN -->
+                                    {{ if (isset .Params "imageAlt") }} <!-- IMAGE ALT -->
+                                        <img src="{{ .Params.image | relURL }}" alt="{{ .Params.imageAlt }}" />
+                                    {{else}}
+                                        <img src="{{ .Params.image | relURL }}" alt="" />
+                                    {{ end }} <!--  END IMAGE ALT -->
+                                {{ end }} <!--  END IMAGE MODERN -->
+                                {{ if .Params.imageAttribution }} <!-- IMAGE ATTR -->
+                                    <center><span style="text-align:center;font-style:italic;">{{ .Params.imageAttribution | safeHTML }}</span></center>
+                                {{ end }} <!-- END IMAGE ATTR -->
+                                </div>
+                            {{ end }} <!-- END IMAGE -->
                             {{ .Content }}
 
                             {{ partial "postcustom" . }}
