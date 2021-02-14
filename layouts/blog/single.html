@@ -21,10 +21,30 @@
                             </header>
                             {{ if .Params.image }}
                             <div class="image main">
+                            {{ if .Params.imageModern }}
+                                <picture>
+                                    {{ if .Params.imageModernType }}
+                                        <source srcset="{{ .Params.imageModern | relURL }}" type="{{ .Params.imageModernType }}">
+                                    {{ else }}
+                                        <source srcset="{{ .Params.imageModern | relURL }}" type="image/webp">
+                                    {{ end }}
+                                    {{ if .Params.imageType }}
+                                        <source srcset="{{ .Params.image | relURL }}" type="{{ .Params.imageType }}">
+                                    {{ else }}
+                                        <source srcset="{{ .Params.image | relURL }}">
+                                    {{ end }}
+                                    {{ if .Params.imageAlt }}
+                                        <img src="{{ .Params.image | relURL }}" alt="{{ .Params.imageAlt }}">
+                                    {{ else }}
+                                    <img src="{{ .Params.image | relURL }}" alt="">
+                                    {{ end }}
+                                </picture>
+                            {{ else }}
                             {{ if .Params.imageAlt }}
                                 <img src="{{ .Params.image | relURL }}" alt="{{ .Params.imageAlt }}" />
                             {{ else }}
                                 <img src="{{ .Params.image | relURL }}" alt="" />
+                            {{ end }}
                             {{ end }}
                             {{ if .Params.imageAttribution }}
                                 <center><span style="text-align:center;font-style:italic;">{{ .Params.imageAttribution | safeHTML }}</span></center>
