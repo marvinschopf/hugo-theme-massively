@@ -21,29 +21,29 @@
                             </header>
                             {{ if .Params.image }}
                                 <div class="image main">
-                                {{ if .Params.imageModern }}
+                                {{ if .Params.imagemodern }}
                                     <picture>
-                                        {{ if (isset .Params "imageModernType") }}
-                                            <source srcset="{{ .Params.imageModern | relURL }}" type="{{ .Params.imageModernType }}">
+                                        {{ if .Params.imageModerntype }}
+                                            <source srcset="{{ .Params.imagemodern | relURL }}" type="{{ .Params.imagemoderntype }}">
                                         {{else}}
-                                            <source srcset="{{ .Params.imageModern | relURL }}" type="image/webp">
+                                            <source srcset="{{ .Params.imagemodern | relURL }}" type="image/webp">
                                         {{ end }}
-                                        {{ if (isset .Params "imageType") }}
-                                            <source srcset="{{ .Params.image | relURL }}" type="{{ .Params.imageType }}">
+                                        {{ if .Params.imagetype }}
+                                            <source srcset="{{ .Params.image | relURL }}" type="{{ .Params.imagetype }}">
                                         {{else}}
                                             <source srcset="{{ .Params.image | relURL }}">
                                         {{ end }}
-                                        {{ if (isset .Params "imageAlt") }}
-                                            <img src="{{ .Params.image | relURL }}" alt="{{ .Params.imageAlt }}">
+                                        {{ if .Params.imagealt }}
+                                            <img src="{{ .Params.image | relURL }}" alt="{{ .Params.imagealt }}">
                                         {{else}}
                                             <img src="{{ .Params.image | relURL }}" alt="">
                                         {{ end }}
                                     </picture>
-                                {{ else }}
-                                    {{ if (isset .Params "imageAlt") }}
-                                        <img src="{{ .Params.image | relURL }}" alt="{{ .Params.imageAlt }}" />
+                                {{else}}
+                                    {{ if .Params.imagealt }}
+                                        <img src="{{ .Params.image | relURL }}" alt="{{ .Params.imagealt }}">
                                     {{else}}
-                                        <img src="{{ .Params.image | relURL }}" alt="" />
+                                        <img src="{{ .Params.image | relURL }}" alt="">
                                     {{ end }}
                                 {{ end }}
                                 {{ if .Params.imageAttribution }}
