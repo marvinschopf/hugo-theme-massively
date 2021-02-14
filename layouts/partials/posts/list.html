@@ -16,7 +16,7 @@
                     {{ if .Params.imageModerntype }}
                         <source srcset="{{ .Params.imagemodern | relURL }}" type="{{ .Params.imagemoderntype }}">
                     {{else}}
-                        <source srcset="{{ .Params.imagemodern | relURL }}" type="image/webp">
+                        <source srcset="{{ .Params.imagemodern | relURL }}" type="image/avif">
                     {{ end }}
                     {{ if .Params.imagetype }}
                         <source srcset="{{ .Params.image | relURL }}" type="{{ .Params.imagetype }}">
