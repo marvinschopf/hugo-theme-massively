@@ -1,17 +1,13 @@
 {{ partial "htmlhead" . }}
 	<body lang='{{ .Site.Language.Lang | default "en-us" }}' class="is-preload">
 
-		{{ $postsFoldername := "blog" }}
+		{{ $postsFoldername := .Site.Params.Posts.foldername | default "blog" }}
 		{{ $postsPageSize := .Site.Params.Posts.pagesize | default 6 }}
 
 		{{ .Scratch.Set "postsFeaturedPostEnabled" false }}
 		{{ $postsFeaturedPostEnabled := .Scratch.Get "postsFeaturedPostEnabled" }}
 
-		{{ $posts := where .Site.RegularPages "Type" "blog" }}
-
-		{{ if .IsHome }}
-		{{ $posts = where .Site.RegularPages "Type" "blog" }}
-		{{ end }}
+		{{ $posts := where .Site.RegularPages "Type" $postsFoldername }}
 
 		{{ .Scratch.Set "postsForPaging" $posts }}
 		{{ $postsForPaging := .Scratch.Get "postsForPaging" }}
