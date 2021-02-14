@@ -7,7 +7,7 @@
 		{{ .Scratch.Set "postsFeaturedPostEnabled" false }}
 		{{ $postsFeaturedPostEnabled := .Scratch.Get "postsFeaturedPostEnabled" }}
 
-		{{ $posts = where .Site.RegularPages "Type" "blog" }}
+		{{ $posts := where .Site.RegularPages "Type" "blog" }}
 
 		{{ if .IsHome }}
 		{{ $posts = where .Site.RegularPages "Type" "blog" }}
