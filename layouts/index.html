@@ -7,10 +7,10 @@
 		{{ .Scratch.Set "postsFeaturedPostEnabled" false }}
 		{{ $postsFeaturedPostEnabled := .Scratch.Get "postsFeaturedPostEnabled" }}
 
-		{{ $posts := where .Data.Pages "Type" $postsFoldername }}
+		{{ $posts = where .Site.RegularPages "Type" "blog" }}
 
 		{{ if .IsHome }}
-		{{ $posts = where .Data.Pages "Type" "blog" }}
+		{{ $posts = where .Site.RegularPages "Type" "blog" }}
 		{{ end }}
 
 		{{ .Scratch.Set "postsForPaging" $posts }}
