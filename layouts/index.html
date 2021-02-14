@@ -4,23 +4,16 @@
 		{{ $postsFoldername := .Site.Params.Posts.foldername | default "blog" }}
 		{{ $postsPageSize := .Site.Params.Posts.pagesize | default 6 }}
 
-		{{ .Scratch.Set "postsFeaturedPostEnabled" true }}
-		{{ if (or (eq .Site.Params.Posts.featuredpost "false") (eq .Site.Params.Posts.featuredpost false)) }}
-			{{ .Scratch.Set "postsFeaturedPostEnabled" false }}
-		{{ end }}
+		{{ .Scratch.Set "postsFeaturedPostEnabled" false }}
 		{{ $postsFeaturedPostEnabled := .Scratch.Get "postsFeaturedPostEnabled" }}
 
 		{{ $posts := where .Data.Pages "Type" $postsFoldername }}
 
-		
-
-		{{ $firstPost := first 1 $posts }}
-
-		{{ if and (eq $postsFeaturedPostEnabled true) (gt (len $posts) 1) }}
-			{{ .Scratch.Set "postsForPaging" (after 1 $posts) }}
-		{{ else }}
-			{{ .Scratch.Set "postsForPaging" $posts }}
+		{{ if .IsHome }}
+		{{ $posts = .Site.RegularPages }}
 		{{ end }}
+
+		{{ .Scratch.Set "postsForPaging" $posts }}
 		{{ $postsForPaging := .Scratch.Get "postsForPaging" }}
 
 		{{ $postsPaging := .Paginate $postsForPaging $postsPageSize }}
