@@ -9,6 +9,9 @@
 		<title>{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Title }}{{ end }}</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		{{ if (isset .Params "description") }}
+		<meta name="description" content="{{ .Params.description }}">
+		{{ end }}
 		<!-- CSS -->
 		{{ if .Site.IsServer }}
 		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) }}
