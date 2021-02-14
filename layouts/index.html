@@ -31,13 +31,7 @@
 				<!-- Main -->
 					<div id="main">
 
-						{{ if (eq $postsFeaturedPostEnabled true) }}
-						{{ partial "posts/featured.html" (dict "firstpost" $firstPost "siteData" (index .Site.Data .Site.Language.Lang)) }}
-						{{ end }}
-
-						{{ if (not (and (eq (len $posts) 1) (eq $postsFeaturedPostEnabled true))) }}
-							{{ partial "posts/list.html" (dict "posts" $postsPaging "siteData" (index .Site.Data .Site.Language.Lang)) }}
-						{{ end }}
+						{{ partial "posts/list.html" (dict "posts" $postsPaging "siteData" (index .Site.Data .Site.Language.Lang)) }}
 
 						{{ $paginator := .Paginator }}
 						{{ $outer := . }}
