@@ -10,7 +10,33 @@
             <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
         </header>
         {{ if .Params.image }}
-        <a href="{{ .Permalink }}" class="image fit"><img src="{{ .Params.image | relURL }}" alt="" /></a>
+        <a href="{{ .Permalink }}" class="image fit">
+            {{ if .Params.imagemodern }}
+                <picture>
+                    {{ if .Params.imageModerntype }}
+                        <source srcset="{{ .Params.imagemodern | relURL }}" type="{{ .Params.imagemoderntype }}">
+                    {{else}}
+                        <source srcset="{{ .Params.imagemodern | relURL }}" type="image/webp">
+                    {{ end }}
+                    {{ if .Params.imagetype }}
+                        <source srcset="{{ .Params.image | relURL }}" type="{{ .Params.imagetype }}">
+                    {{else}}
+                        <source srcset="{{ .Params.image | relURL }}">
+                    {{ end }}
+                    {{ if .Params.imagealt }}
+                        <img src="{{ .Params.image | relURL }}" alt="{{ .Params.imagealt }}">
+                    {{else}}
+                        <img src="{{ .Params.image | relURL }}" alt="">
+                    {{ end }}
+                </picture>
+            {{else}}
+                {{ if .Params.imagealt }}
+                    <img src="{{ .Params.image | relURL }}" alt="{{ .Params.imagealt }}">
+                {{else}}
+                    <img src="{{ .Params.image | relURL }}" alt="">
+                {{ end }}
+            {{ end }}
+        </a>
         {{ end }}
         {{ if .Description }}
         <p>{{ .Description }}</p>
