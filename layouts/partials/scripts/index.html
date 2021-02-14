@@ -9,5 +9,6 @@
 {{ $js := slice $jQuery $scrollex $scrolly $browser $breakpoints $util $main | resources.Concat "assets/js/bundle.js" }}
 
 <!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/js/fontawesome.min.js" integrity="sha256-JcISpKR/o7bJ8vuyABBSWjsFge5GvBqf3SSSrN895IQ=" crossorigin="anonymous" async defer></script>
 <script src='{{ $js.RelPermalink }}'></script>
 
