@@ -1,13 +1,13 @@
+{{ $scrollex := resources.Get "js/jquery.scrollex.min.js" }}
+{{ $scrolly := resources.Get "js/jquery.scrolly.min.js" }}
 {{ $browser := resources.Get "js/browser.min.js" }}
 {{ $breakpoints := resources.Get "js/breakpoints.min.js" }}
 {{ $util := resources.Get "js/util.js" }}
 {{ $main := resources.Get "js/main.js" }}
 
-{{ $js := slice $browser $breakpoints $util $main | resources.Concat "assets/js/bundle.js" }}
+{{ $js := slice $scrollex $scrolly $browser $breakpoints $util $main | resources.Concat "assets/js/bundle.js" }}
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/gh/ajlkn/jquery.scrollex@v0.2.1/jquery.scrollex.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/gh/marvinschopf/jquery.scrolly@v1.0.0-dev/jquery.scrolly.min.js" crossorigin="anonymous"></script>
 <script src='{{ $js.RelPermalink }}'></script>
 
