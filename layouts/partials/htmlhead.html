@@ -49,15 +49,15 @@
 		<!-- CSS -->
 		{{ if .Site.IsServer }}
 		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) | resources.Minify | resources.Fingerprint "sha512" }}
-		<link rel="stylesheet" href="{{ ($style).RelPermalink }}">
+		<link rel="stylesheet" href="{{ ($style).RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
 		{{ else }}
 		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha512" }}
-		<link rel="stylesheet" href="{{ ($style | minify).RelPermalink }}">
+		<link rel="stylesheet" href="{{ ($style | minify).RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
 		{{ end }}
 		{{ with .Site.Params.favicon }}
 		<link rel="shortcut icon" href="{{ . }}">
 		{{ end }}
 		{{ $noscript := resources.Get "scss/noscript.scss" | resources.ExecuteAsTemplate "noscript.scss" . | toCSS (dict "targetPath" "assets/css/noscript.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha512" }}
-		<noscript><link rel="stylesheet" href='{{ $noscript.RelPermalink }}'></noscript>
+		<noscript><link rel="stylesheet" href='{{ $noscript.RelPermalink }}' integrity="{{ $noscript.Data.Integrity }}"></noscript>
 		{{ partial "customHead" . }}
 	</head>
