@@ -9,7 +9,11 @@
 		{{ if and (isset .Params "stripsitetitle") (eq .Params.stripsitetitle true) }}
 			<title>{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }}{{end}}</title>
 		{{else}}
-			<title>{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Title }}{{ end }}</title>
+			{{ if and (and (isset .Params "shortensitetitle") (eq .Params.shortensitetitle true)) (isset .Site.Params "shorttitle") }}
+				<title>{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Params.shorttitle }}{{ end }}</title>
+			{{else}}
+				<title>{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Title }}{{ end }}</title>
+			{{end}}
 		{{end}}
 		<meta charset="utf-8" />
 		{{ hugo.Generator }}
