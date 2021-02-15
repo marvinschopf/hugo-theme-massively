@@ -6,15 +6,11 @@
 -->
 <html lang='{{ .Site.Language.Lang | default "en-us" }}'>
 	<head>
-		{{ if (isset .Params "stripsitetitle") }}
-			{{ if eq .Params.stripsitetitle true }}
-				<title>{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }}</title>
-			{{else}}
-				<title>{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Title }}{{ end }}</title>
-			{{ end }}
+		{{ if and (isset .Params "stripsitetitle") (eq .Params.stripsitetitle true) }}
+			<title>{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }}</title>
 		{{else}}
 			<title>{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Title }}{{ end }}</title>
-		{{ end }}
+		{{end}}
 		<meta charset="utf-8" />
 		{{ hugo.Generator }}
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
