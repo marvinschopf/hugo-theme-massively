@@ -37,9 +37,7 @@
 		{{ $util := resources.Get "js/util.js" }}
 		{{ $main := resources.Get "js/main.js" }}
 		{{ $js := slice $jQuery $scrollex $scrolly $browser $breakpoints $util $main | resources.Concat "assets/js/bundle.js" }}
-		{{ $faRelUrl := "/assets/css/font-awesome.min.css" | relURL }}
 		<link rel="preload" href="{{ $js.RelPermalink }}" as="script">
-		<link rel="preload" href="{{ $faRelUrl }}" as="style">
 		{{ if .Site.IsServer }}
 		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) }}
 		<link rel="preload" href="{{ ($style).RelPermalink }}" as="style">
