@@ -21,6 +21,13 @@
 		{{ if (isset .Params "description") }}
 		<meta name="description" content="{{ .Params.description }}">
 		{{ end }}
+		{{ if or (and (isset .Params "selfcanonical") (eq .Params.selfcanonical false)) (isset .Params "canonical") }}
+			{{ if (isset .Params "canonical" }}
+				<link rel="canonical" href="{{ .Params.canonical }}">
+			{{end}}
+		{{else}}
+			<link rel="canonical" href="{{ .Permalink }}">
+		{{ end }}
 		<!-- CSS -->
 		{{ if .Site.IsServer }}
 		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) }}
