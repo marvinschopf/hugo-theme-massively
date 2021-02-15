@@ -29,12 +29,12 @@
 			<link rel="canonical" href="{{ .Permalink }}">
 		{{ end }}
 		<!-- Preload -->
-		{{ $scrollex := resources.Get "js/jquery.scrollex.min.js" }}
-		{{ $scrolly := resources.Get "js/jquery.scrolly.min.js" }}
-		{{ $browser := resources.Get "js/browser.min.js" }}
-		{{ $breakpoints := resources.Get "js/breakpoints.min.js" }}
-		{{ $util := resources.Get "js/util.js" }}
-		{{ $main := resources.Get "js/main.js" }}
+		{{ $scrollex := resources.Get "js/jquery.scrollex.min.js" | resources.Minify }}
+		{{ $scrolly := resources.Get "js/jquery.scrolly.min.js" | resources.Minify }}
+		{{ $browser := resources.Get "js/browser.min.js" | resources.Minify }}
+		{{ $breakpoints := resources.Get "js/breakpoints.min.js" | resources.Minify }}
+		{{ $util := resources.Get "js/util.js" | resources.Minify }}
+		{{ $main := resources.Get "js/main.js | resources.Minify" }}
 		{{ $js := slice $scrollex $scrolly $browser $breakpoints $util $main | resources.Concat "assets/js/bundle.js" }}
 		<link rel="preload" href="{{ $js.RelPermalink }}" as="script">
 		{{ if .Site.IsServer }}
