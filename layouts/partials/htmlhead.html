@@ -38,26 +38,26 @@
 		{{ $js := slice $scrollex $scrolly $browser $breakpoints $util $main | resources.Concat "assets/js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
 		<link rel="preload" href="{{ $js.RelPermalink }}" as="script">
 		{{ if .Site.IsServer }}
-		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) }}
+		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) | resources.Minify | resources.Fingerprint "sha512" }}
 		<link rel="preload" href="{{ ($style).RelPermalink }}" as="style">
 		{{ else }}
-		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" false) }}
+		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha512" }}
 		<link rel="preload" href="{{ ($style | minify).RelPermalink }}" as="style">
 		{{ end }}
-		{{ $noscript := resources.Get "scss/noscript.scss" | resources.ExecuteAsTemplate "noscript.scss" . | toCSS (dict "targetPath" "assets/css/noscript.css" "enableSourceMap" false) }}
+		{{ $noscript := resources.Get "scss/noscript.scss" | resources.ExecuteAsTemplate "noscript.scss" . | toCSS (dict "targetPath" "assets/css/noscript.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha512" }}
 		<noscript><link rel="preload" href='{{ $noscript.RelPermalink }}' as="style"></noscript>
 		<!-- CSS -->
 		{{ if .Site.IsServer }}
-		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) }}
+		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) | resources.Minify | resources.Fingerprint "sha512" }}
 		<link rel="stylesheet" href="{{ ($style).RelPermalink }}">
 		{{ else }}
-		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" false) }}
+		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha512" }}
 		<link rel="stylesheet" href="{{ ($style | minify).RelPermalink }}">
 		{{ end }}
 		{{ with .Site.Params.favicon }}
 		<link rel="shortcut icon" href="{{ . }}">
 		{{ end }}
-		{{ $noscript := resources.Get "scss/noscript.scss" | resources.ExecuteAsTemplate "noscript.scss" . | toCSS (dict "targetPath" "assets/css/noscript.css" "enableSourceMap" false) }}
+		{{ $noscript := resources.Get "scss/noscript.scss" | resources.ExecuteAsTemplate "noscript.scss" . | toCSS (dict "targetPath" "assets/css/noscript.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha512" }}
 		<noscript><link rel="stylesheet" href='{{ $noscript.RelPermalink }}'></noscript>
 		{{ partial "customHead" . }}
 	</head>
