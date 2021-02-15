@@ -7,7 +7,7 @@
 <html lang='{{ .Site.Language.Lang | default "en-us" }}'>
 	<head>
 		{{ if and (isset .Params "stripsitetitle") (eq .Params.stripsitetitle true) }}
-			<title>{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }}</title>
+			<title>{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }}{{end}}</title>
 		{{else}}
 			<title>{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Title }}{{ end }}</title>
 		{{end}}
