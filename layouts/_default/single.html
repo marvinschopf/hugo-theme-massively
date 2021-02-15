@@ -12,6 +12,9 @@
                         
                         <section class="post">
                             {{ .Content }}
+                            {{if and (isset .Params "enablesharebuttons") (eq .Params.enablesharebuttons true)}}
+                                {{ partial "share" . }}
+                            {{end}}
                         </section>
 
 					</div>

@@ -55,6 +55,10 @@
 
                             {{ partial "postcustom" . }}
                             
+                            {{if not (and (isset .Params "disablesharebuttons") (eq .Params.disablesharebuttons true))}}
+                                {{ partial "share" . }}
+                            {{end}}
+
                             {{ if not (eq .Params.disableComments true) }}
                             {{ template "_internal/disqus.html" . }}
                             {{ end }}
