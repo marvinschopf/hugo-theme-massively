@@ -28,7 +28,6 @@
 					<div id="main">
 
 						{{ partial "homeContent" . }}
-						<hr>
 
 						{{ partial "posts/list.html" (dict "posts" $postsPaging "siteData" (index .Site.Data .Site.Language.Lang)) }}
 
