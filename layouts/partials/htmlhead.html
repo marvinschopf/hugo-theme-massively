@@ -46,7 +46,7 @@
 		{{ $breakpoints := resources.Get "js/breakpoints.min.js" }}
 		{{ $util := resources.Get "js/util.js" }}
 		{{ $main := resources.Get "js/main.js" }}
-		{{ $js := slice $scrollex $scrolly $browser $breakpoints $util $main | resources.Concat "assets/js/bundle.js" | resources.Minify | resources.Fingerprint "sha384" }}
+		{{ $js := slice $scrollex $scrolly $browser $breakpoints $util $main | resources.Concat "assets/js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
 		<link
 			rel="preload"
 			href="{{ $js.RelPermalink }}"
@@ -54,7 +54,7 @@
 			integrity="{{ $js.Data.Integrity }}"
 		/>
 		{{ if .Site.IsServer }}
-			{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) | resources.Minify | resources.Fingerprint "sha384" }}
+			{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) | resources.Minify | resources.Fingerprint "sha512" }}
 			<link
 				rel="preload"
 				href="{{ ($style).RelPermalink }}"
@@ -62,7 +62,7 @@
 				integrity="{{ $style.Data.Integrity }}"
 			/>
 			{{ else }}
-			{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha384" }}
+			{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha512" }}
 			<link
 				rel="preload"
 				href="{{ ($style).RelPermalink }}"
@@ -70,7 +70,7 @@
 				integrity="{{ $style.Data.Integrity }}"
 			/>
 		{{ end }}
-		{{ $noscript := resources.Get "scss/noscript.scss" | resources.ExecuteAsTemplate "noscript.scss" . | toCSS (dict "targetPath" "assets/css/noscript.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha384" }}
+		{{ $noscript := resources.Get "scss/noscript.scss" | resources.ExecuteAsTemplate "noscript.scss" . | toCSS (dict "targetPath" "assets/css/noscript.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha512" }}
 		<noscript
 			><link
 				rel="preload"
@@ -80,14 +80,14 @@
 		/></noscript>
 		<!-- CSS -->
 		{{ if .Site.IsServer }}
-			{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) | resources.Minify | resources.Fingerprint "sha384" }}
+			{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) | resources.Minify | resources.Fingerprint "sha512" }}
 			<link
 				rel="stylesheet"
 				href="{{ ($style).RelPermalink }}"
 				integrity="{{ $style.Data.Integrity }}"
 			/>
 			{{ else }}
-			{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha384" }}
+			{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha512" }}
 			<link
 				rel="stylesheet"
 				href="{{ ($style).RelPermalink }}"
@@ -97,7 +97,7 @@
 		{{ with .Site.Params.favicon }}
 			<link rel="shortcut icon" href="{{ . }}" />
 		{{ end }}
-		{{ $noscript := resources.Get "scss/noscript.scss" | resources.ExecuteAsTemplate "noscript.scss" . | toCSS (dict "targetPath" "assets/css/noscript.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha384" }}
+		{{ $noscript := resources.Get "scss/noscript.scss" | resources.ExecuteAsTemplate "noscript.scss" . | toCSS (dict "targetPath" "assets/css/noscript.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha512" }}
 		<noscript
 			><link
 				rel="stylesheet"
