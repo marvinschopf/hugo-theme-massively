@@ -3,7 +3,8 @@
   "version": "6.0.0",
   "description": "HTML5 UP theme Massively for Hugo",
   "scripts": {
-    "hugo-dev": "cd exampleSite && hugo server --themesDir ../.."
+    "hugo-dev": "cd exampleSite && hugo server --themesDir ../..",
+    "style:fix": "prettier --write ./"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,22 @@
     "url": "https://github.com/marvinschopf/hugo-theme-massively/issues"
   },
   "homepage": "https://github.com/marvinschopf/hugo-theme-massively#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "prettier": "2.2.1",
+    "prettier-plugin-go-template": "0.0.10"
+  },
+  "prettier": {
+    "useTabs": true,
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": false,
+    "overrides": [
+      {
+        "files": ["*.html"],
+        "options": {
+          "parser": "go-template"
+        }
+      }
+    ]
+  }
 }
