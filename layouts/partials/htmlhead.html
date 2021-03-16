@@ -1,32 +1,43 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <!--
 	Massively by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html lang='{{ .Site.Language.Lang | default "en-us" }}'>
+<html lang="{{ .Site.Language.Lang | default "en-us" }}">
 	<head>
 		{{ if and (isset .Params "stripsitetitle") (eq .Params.stripsitetitle true) }}
-			<title>{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }}{{end}}</title>
-		{{else}}
+			<title>
+				{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}
+			</title>
+			{{ else }}
 			{{ if and (and (isset .Params "shortensitetitle") (eq .Params.shortensitetitle true)) (isset .Site.Params "shorttitle") }}
-				<title>{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Params.shorttitle }}{{ end }}</title>
-			{{else}}
-				<title>{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Title }}{{ end }}</title>
-			{{end}}
-		{{end}}
+				<title>
+					{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }}
+					&middot; {{ .Site.Params.shorttitle }}{{ end }}
+				</title>
+				{{ else }}
+				<title>
+					{{ if eq (.Site.Title) (.Title) }}{{ .Site.Title }}{{ else }}{{ .Title }}
+					&middot; {{ .Site.Title }}{{ end }}
+				</title>
+			{{ end }}
+		{{ end }}
 		<meta charset="utf-8" />
 		{{ hugo.Generator }}
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, user-scalable=no"
+		/>
 		{{ if (isset .Params "description") }}
-		<meta name="description" content="{{ .Params.description }}">
+			<meta name="description" content="{{ .Params.description }}" />
 		{{ end }}
 		{{ if or (and (isset .Params "selfcanonical") (eq .Params.selfcanonical false)) (isset .Params "canonical") }}
 			{{ if (isset .Params "canonical") }}
-				<link rel="canonical" href="{{ .Params.canonical }}">
-			{{end}}
-		{{else}}
-			<link rel="canonical" href="{{ .Permalink }}">
+				<link rel="canonical" href="{{ .Params.canonical }}" />
+			{{ end }}
+			{{ else }}
+			<link rel="canonical" href="{{ .Permalink }}" />
 		{{ end }}
 		<!-- Preload -->
 		{{ $scrollex := resources.Get "js/jquery.scrollex.min.js" }}
@@ -36,28 +47,63 @@
 		{{ $util := resources.Get "js/util.js" }}
 		{{ $main := resources.Get "js/main.js" }}
 		{{ $js := slice $scrollex $scrolly $browser $breakpoints $util $main | resources.Concat "assets/js/bundle.js" | resources.Minify | resources.Fingerprint "sha384" }}
-		<link rel="preload" href="{{ $js.RelPermalink }}" as="script" integrity="{{ $js.Data.Integrity }}">
+		<link
+			rel="preload"
+			href="{{ $js.RelPermalink }}"
+			as="script"
+			integrity="{{ $js.Data.Integrity }}"
+		/>
 		{{ if .Site.IsServer }}
-		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) | resources.Minify | resources.Fingerprint "sha384" }}
-		<link rel="preload" href="{{ ($style).RelPermalink }}" as="style" integrity="{{ $style.Data.Integrity }}">
-		{{ else }}
-		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha384" }}
-		<link rel="preload" href="{{ ($style).RelPermalink }}" as="style" integrity="{{ $style.Data.Integrity }}">
+			{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) | resources.Minify | resources.Fingerprint "sha384" }}
+			<link
+				rel="preload"
+				href="{{ ($style).RelPermalink }}"
+				as="style"
+				integrity="{{ $style.Data.Integrity }}"
+			/>
+			{{ else }}
+			{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha384" }}
+			<link
+				rel="preload"
+				href="{{ ($style).RelPermalink }}"
+				as="style"
+				integrity="{{ $style.Data.Integrity }}"
+			/>
 		{{ end }}
 		{{ $noscript := resources.Get "scss/noscript.scss" | resources.ExecuteAsTemplate "noscript.scss" . | toCSS (dict "targetPath" "assets/css/noscript.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha384" }}
-		<noscript><link rel="preload" href='{{ $noscript.RelPermalink }}' as="style" integrity="{{ $noscript.Data.Integrity }}"></noscript>
+		<noscript
+			><link
+				rel="preload"
+				href="{{ $noscript.RelPermalink }}"
+				as="style"
+				integrity="{{ $noscript.Data.Integrity }}"
+		/></noscript>
 		<!-- CSS -->
 		{{ if .Site.IsServer }}
-		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) | resources.Minify | resources.Fingerprint "sha384" }}
-		<link rel="stylesheet" href="{{ ($style).RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
-		{{ else }}
-		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha384" }}
-		<link rel="stylesheet" href="{{ ($style).RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+			{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) | resources.Minify | resources.Fingerprint "sha384" }}
+			<link
+				rel="stylesheet"
+				href="{{ ($style).RelPermalink }}"
+				integrity="{{ $style.Data.Integrity }}"
+			/>
+			{{ else }}
+			{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha384" }}
+			<link
+				rel="stylesheet"
+				href="{{ ($style).RelPermalink }}"
+				integrity="{{ $style.Data.Integrity }}"
+			/>
 		{{ end }}
 		{{ with .Site.Params.favicon }}
-		<link rel="shortcut icon" href="{{ . }}">
+			<link rel="shortcut icon" href="{{ . }}" />
 		{{ end }}
 		{{ $noscript := resources.Get "scss/noscript.scss" | resources.ExecuteAsTemplate "noscript.scss" . | toCSS (dict "targetPath" "assets/css/noscript.css" "enableSourceMap" false) | resources.Minify | resources.Fingerprint "sha384" }}
-		<noscript><link rel="stylesheet" href='{{ $noscript.RelPermalink }}' integrity="{{ $noscript.Data.Integrity }}"></noscript>
+		<noscript
+			><link
+				rel="stylesheet"
+				href="{{ $noscript.RelPermalink }}"
+				integrity="{{ $noscript.Data.Integrity }}"
+		/></noscript>
 		{{ partial "customHead" . }}
 	</head>
+</html>
