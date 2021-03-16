@@ -1,3 +1,4 @@
 .yarn
 yarn.lock
 package-lock.json
+assets/
