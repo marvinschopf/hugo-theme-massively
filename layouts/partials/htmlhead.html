@@ -53,6 +53,24 @@
 			as="script"
 			integrity="{{ $js.Data.Integrity }}"
 		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/source-sans-pro@3.6.0/source-sans-pro.css"
+			integrity="sha256-6VPJRgiqllvLSlBFiq2f1N3nDePYy9Dmc6TqLfXwyG4="
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/typeface-merriweather@1.1.13/index.css"
+			integrity="sha256-lYVOVIdMuEE+sb4FBvp2b15KBpMU2qFeimhRFKnKQpA="
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+			integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0="
+			crossorigin="anonymous"
+		/>
 		{{ if .Site.IsServer }}
 			{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) | resources.Minify | resources.Fingerprint "sha512" }}
 			<link
